@@ -146,7 +146,7 @@ describe("createMatrixRoomMessageHandler inbound body formatting", () => {
 
     const finalized = latestFinalizedReplyContext(finalizeInboundContext);
     expect(finalized.MessageThreadId).toBe("$thread-root");
-    expect(finalized.ReplyToId).toBeUndefined();
+    expect(finalized.ReplyToId).toBe("$thread-root");
     expect(latestSessionKey(recordInboundSession)).toBe("agent:ops:main:thread:$thread-root");
   });
 
@@ -270,7 +270,7 @@ describe("createMatrixRoomMessageHandler inbound body formatting", () => {
 
     const finalized = latestFinalizedReplyContext(finalizeInboundContext);
     expect(finalized.MessageThreadId).toBe("$thread-root");
-    expect(finalized.ReplyToId).toBeUndefined();
+    expect(finalized.ReplyToId).toBe("$reply1");
     expect(finalized.ReplyToSender).toBe("Alice");
     expect(finalized.ReplyToBody).toBe("[Poll]\nLunch?\n\n1. Pizza\n2. Sushi");
     expect(finalized.ThreadStarterBody).toBe(
@@ -312,7 +312,7 @@ describe("createMatrixRoomMessageHandler inbound body formatting", () => {
 
     const finalized = latestFinalizedReplyContext(finalizeInboundContext);
     expect(finalized.MessageThreadId).toBe("$thread-root");
-    expect(finalized.ReplyToId).toBeUndefined();
+    expect(finalized.ReplyToId).toBe("$reply1");
     expect(finalized.ReplyToSender).toBe("Alice");
     expect(finalized.ReplyToBody).toBe("Root topic");
     expect(finalized.ThreadStarterBody).toBe(

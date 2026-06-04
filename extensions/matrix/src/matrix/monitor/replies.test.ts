@@ -148,7 +148,7 @@ describe("deliverMatrixReplies", () => {
     expect(sendOptions(2).replyToId).toBe("reply-text");
   });
 
-  it("suppresses replyToId when threadId is set", async () => {
+  it("keeps replyToId as the thread fallback target when threadId is set", async () => {
     chunkMatrixTextMock.mockImplementation((text: string) => ({
       trimmedText: text.trim(),
       convertedText: text,
@@ -169,9 +169,9 @@ describe("deliverMatrixReplies", () => {
     });
 
     expect(sendMessageMatrixMock).toHaveBeenCalledTimes(2);
-    expect(sendOptions(0).replyToId).toBeUndefined();
+    expect(sendOptions(0).replyToId).toBe("reply-thread");
     expect(sendOptions(0).threadId).toBe("thread-77");
-    expect(sendOptions(1).replyToId).toBeUndefined();
+    expect(sendOptions(1).replyToId).toBe("reply-thread");
     expect(sendOptions(1).threadId).toBe("thread-77");
   });
 

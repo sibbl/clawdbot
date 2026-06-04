@@ -72,7 +72,7 @@ export async function deliverMatrixReplies(params: {
       continue;
     }
     const replyToIdRaw = reply.replyToId?.trim();
-    const replyToId = params.threadId || params.replyToMode === "off" ? undefined : replyToIdRaw;
+    const replyToId = params.replyToMode === "off" ? undefined : replyToIdRaw;
     const rawText = reply.text ?? "";
     const mediaList = reply.mediaUrls?.length
       ? reply.mediaUrls
